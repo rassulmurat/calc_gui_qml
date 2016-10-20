@@ -3,20 +3,9 @@
 #include <QQuickView>
 #include <QObject>
 #include <QQuickItem>
-
-class MyClass : public QObject
-{
-    Q_OBJECT
-public slots:
-    void cppSlot(const QVariant &v) {
-       qDebug() << "Called the C++ slot with value:" << v;
-
-       QQuickItem *item =
-           qobject_cast<QQuickItem*>(v.value<QObject*>());
-       qDebug() << "Item dimensions:" << item->width()
-                << item->height();
-    }
-};
+#include <QQmlContext>
+#include "myclass.h"
+#include <QQuickWindow>
 
 int main(int argc, char *argv[])
 {
@@ -24,12 +13,14 @@ int main(int argc, char *argv[])
 
     QQmlApplicationEngine engine;
     engine.load(QUrl(QStringLiteral("qrc:/main.qml")));
-    QObject *root = engine.rootObjects().at(0);
+    QObject *root = engine.rootObjects().value(0);
 
-    QObject *item = root->findChild<QObject*>("plus");
-
+    QObject *item = root->findChild<QObject*>("recsign");
     MyClass myClass;
-    QObject::connect(item, SIGNAL(qmlSignal(QVariant)), &myClass, SLOT(cppSlot(QVariant)));
+    QObject::connect(item, SIGNAL(qmlSignal(QString)), &myClass, SLOT(plusClicked(QString)));
+
+    QObject *btn = root->findChild<QObject*>("button");
+    QObject::connect(btn, SIGNAL(btnClc(QString, QString, QVariant)), &myClass, SLOT(btnClicked(QString, QString, QVariant)));
 
     return app.exec();
 }
