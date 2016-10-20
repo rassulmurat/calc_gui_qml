@@ -1,0 +1,7 @@
+build-QML_GUI-Desktop_Qt_5_7_0_GCC_64bit-Profile/
+build-QML_GUI-Desktop_Qt_5_7_0_GCC_64bit-Release
+build-QML_GUI-Desktop_Qt_5_7_0_GCC_64bit-Debug/main.o
+build-QML_GUI-Desktop_Qt_5_7_0_GCC_64bit-Debug/Makefile
+build-QML_GUI-Desktop_Qt_5_7_0_GCC_64bit-Debug/myclass.o
+build-QML_GUI-Desktop_Qt_5_7_0_GCC_64bit-Debug/qrc_qml.cpp
+build-QML_GUI-Desktop_Qt_5_7_0_GCC_64bit-Debug/qrc_qml.o
